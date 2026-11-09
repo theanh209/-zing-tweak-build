@@ -17,7 +17,7 @@ $(TWEAK_NAME)_CCFLAGS = -std=c++11 -fno-rtti -fno-exceptions -DNDEBUG
 $(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-deprecated-declarations -Wno-unused-variable -Wno-unused-value
 
 #Add dobby hook
-$(TWEAK_NAME)_OBJ_FILES = 5Toubun/libdobby.a
+$(TWEAK_NAME)_OBJ_FILES = libdobby.a
 
 $(TWEAK_NAME)_FILES = ImGuiDrawView.mm $(wildcard Esp/*.mm) $(wildcard Esp/*.m) $(wildcard IMGUI/*.cpp) $(wildcard IMGUI/*.mm)
 
@@ -27,5 +27,4 @@ $(TWEAK_NAME)_FILES = ImGuiDrawView.mm $(wildcard Esp/*.mm) $(wildcard Esp/*.m) 
 # GO_EASY_ON_ME = 1
 
 include $(THEOS_MAKE_PATH)/tweak.mk
-
 
