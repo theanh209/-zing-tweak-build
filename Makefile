@@ -10,21 +10,22 @@ TWEAK_NAME = 34306jit
 
 $(TWEAK_NAME)_FRAMEWORKS = UIKit Foundation Security QuartzCore CoreGraphics CoreText AVFoundation Accelerate GLKit SystemConfiguration GameController Metal MetalKit
 
-# -I./IMGUI: Báo compiler tìm header trong thư mục IMGUI
-$(TWEAK_NAME)_CCFLAGS = -std=c++11 -fno-rtti -fno-exceptions -DNDEBUG -I./IMGUI
+# Trỏ include path ra thư mục hiện tại (.) thay vì IMGUI/
+$(TWEAK_NAME)_CCFLAGS = -std=c++11 -fno-rtti -fno-exceptions -DNDEBUG -I.
 $(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-deprecated-declarations -Wno-unused-variable -Wno-unused-value
 
-# Add dobby hook
+# Link thư viện dobby
 $(TWEAK_NAME)_OBJ_FILES = libdobby.a
 
-# Add all necessary source files
+# Bỏ chữ "IMGUI/" vì file đang nằm ở root
+# Tự động gom các file .mm/.m trong thư mục Esp/ (nếu có)
 $(TWEAK_NAME)_FILES = ImGuiDrawView.mm \
-                      IMGUI/imgui.cpp \
-                      IMGUI/imgui_draw.cpp \
-                      IMGUI/imgui_widgets.cpp \
-                      IMGUI/imgui_tables.cpp \
-                      IMGUI/imgui_demo.cpp \
-                      IMGUI/imgui_impl_metal.mm \
+                      imgui.cpp \
+                      imgui_draw.cpp \
+                      imgui_widgets.cpp \
+                      imgui_tables.cpp \
+                      imgui_demo.cpp \
+                      imgui_impl_metal.mm \
                       $(wildcard Esp/*.mm) \
                       $(wildcard Esp/*.m)
 
