@@ -1,6 +1,4 @@
-#export THEOS=/var/mobile/theos
-ARCHS = arm64
-#Add arm64e if it needed
+ARCHS = arm64 arm64e
 DEBUG = 0
 FINALPACKAGE = 1
 FOR_RELEASE = 1
@@ -12,13 +10,14 @@ TWEAK_NAME = 34306jit
 
 $(TWEAK_NAME)_FRAMEWORKS = UIKit Foundation Security QuartzCore CoreGraphics CoreText AVFoundation Accelerate GLKit SystemConfiguration GameController Metal MetalKit
 
-$(TWEAK_NAME)_CCFLAGS = -std=c++11 -fno-rtti -fno-exceptions -DNDEBUG
+# -I./IMGUI: Báo compiler tìm header trong thư mục IMGUI
+$(TWEAK_NAME)_CCFLAGS = -std=c++11 -fno-rtti -fno-exceptions -DNDEBUG -I./IMGUI
 $(TWEAK_NAME)_CFLAGS = -fobjc-arc -Wno-deprecated-declarations -Wno-unused-variable -Wno-unused-value
 
 # Add dobby hook
 $(TWEAK_NAME)_OBJ_FILES = libdobby.a
 
-# Add all necessary source files (Obj-C, C++, and ImGui implementation)
+# Add all necessary source files
 $(TWEAK_NAME)_FILES = ImGuiDrawView.mm \
                       IMGUI/imgui.cpp \
                       IMGUI/imgui_draw.cpp \
