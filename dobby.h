@@ -2,10 +2,10 @@
 #define dobby_h
 
 #ifdef __cplusplus
-extern "C" {
+#include <stdint.h>
 #endif
 
-#include <stdbool.h>
+extern "C" {
 #include <stdint.h>
 
 typedef uintptr_t addr_t;
