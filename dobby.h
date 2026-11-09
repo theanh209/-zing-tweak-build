@@ -5,8 +5,9 @@
 #include <stdint.h>
 #endif
 
-extern "C" {
 #include <stdint.h>
+
+extern "C" {
 
 typedef uintptr_t addr_t;
 typedef uint32_t addr32_t;
