@@ -10,10 +10,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: recursive # <--- DÒNG QUAN TRỌNG NHẤT: Kéo IMGUI về
 
       - name: Install Theos (Bản thủ công)
         run: |
-          # Tải Theos trực tiếp từ GitHub, đéo dùng action bị lỗi kia nữa
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
           echo "$HOME/theos/bin" >> $GITHUB_PATH
@@ -22,10 +23,13 @@ jobs:
         run: |
           export THEOS=$HOME/theos
           export PATH=$THEOS/bin:$PATH
-          make package
+          # Xóa cache obj cũ để build sạch từ đầu
+          rm -rf .theos
+          make clean package
 
       - name: Upload .dylib
         uses: actions/upload-artifact@v4
         with:
           name: ZingTweak-dylib
-          path: .theos/obj/debug/*.dylib
+          # .theos/obj/debug/ hay .theos/obj/ tùy thuộc vào DEBUG = 1 hay 0
+          path: .theos/obj/*.dylib 
