@@ -2,23 +2,22 @@
 #import <MetalKit/MetalKit.h>
 #import <Foundation/Foundation.h>
 //Imgui library
-#import "Esp/CaptainHook.h"
-#import "Esp/ImGuiDrawView.h"
-#import "IMGUI/imgui.h"
-#import "IMGUI/imgui_impl_metal.h"
-#import "IMGUI/Honkai.h"
-//Patch library (Mày giữ nguyên mấy cái include này, vì nó chứa hàm vm, vm_unity, Dobby...)
-#import "5Toubun/NakanoIchika.h"
-#import "5Toubun/NakanoNino.h"
-#import "5Toubun/NakanoMiku.h"
-#import "5Toubun/NakanoYotsuba.h"
-#import "5Toubun/NakanoItsuki.h"
-#import "5Toubun/dobby.h"
+#import "CaptainHook.h"
+#import "ImGuiDrawView.h"
+#import "imgui.h"
+#import "imgui_impl_metal.h"
+#import "Honkai.h"
+//Patch library
+#import "NakanoIchika.h"
+#import "NakanoNino.h"
+#import "NakanoMiku.h"
+#import "NakanoYotsuba.h"
+#import "NakanoItsuki.h"
+#import "dobby.h"
 
 #define kWidth  [UIScreen mainScreen].bounds.size.width
 #define kHeight [UIScreen mainScreen].bounds.size.height
 #define kScale [UIScreen mainScreen].scale
-
 @interface ImGuiDrawView () <MTKViewDelegate>
 @property (nonatomic, strong) id <MTLDevice> device;
 @property (nonatomic, strong) id <MTLCommandQueue> commandQueue;
